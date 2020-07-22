@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets, uic
 import sys
-import test
+import detect
 import cv2
 
 class Ui(QtWidgets.QMainWindow):
@@ -16,7 +16,8 @@ class Ui(QtWidgets.QMainWindow):
         self.show()
         #self.input.text()
     def printButtonPressed(self):
-        print(self.input.text())
+        detect.runDetect(self.input.text() + ".png")
+        #print(self.input.text())4
 app = QtWidgets.QApplication(sys.argv)
 window = Ui()
 app.exec_()

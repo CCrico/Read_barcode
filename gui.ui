@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Print Content</string>
+     <string>Check Barcode</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="input">
@@ -32,12 +32,12 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>281</width>
+      <width>281</width>pri
       <height>21</height>
      </rect>
     </property>
     <property name="placeholderText">
-     <string>Wow! A Placeholder!</string>
+     <string>Nhập tên ảnh</string>
     </property>
    </widget>
    <widget class="QPushButton" name="modeButton">
