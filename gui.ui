@@ -32,38 +32,12 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>281</width>pri
+      <width>281</width>
       <height>21</height>
      </rect>
     </property>
     <property name="placeholderText">
      <string>Nhập tên ảnh</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="modeButton">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>250</y>
-      <width>81</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Mode</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="setButton">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>250</y>
-      <width>81</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Set</string>
     </property>
    </widget>
    <widget class="QPushButton" name="clearButton">
@@ -76,7 +50,56 @@
      </rect>
     </property>
     <property name="text">
-     <string>Clear</string>
+     <string>Exit</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="clearButton_2">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>250</y>
+      <width>81</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Save as</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="printButton_2">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>40</y>
+      <width>81</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>HE</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="printButton_3">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>70</y>
+      <width>81</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Invert</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>50</y>
+      <width>281</width>
+      <height>161</height>
+     </rect>
     </property>
    </widget>
   </widget>
