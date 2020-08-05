@@ -15,48 +15,28 @@ def run():
 	# Dinh nghia cac ky tu tren bien so
 	char_list =  '0123456789ABCDEFGHKLMNPRSTUVXYZ'
 
-	# Ham fine tune bien so, loai bo cac ki tu khong hop ly
-	def fine_tune(lp):
-			newString = ""
-			for i in range(len(lp)):
-					if lp[i] in char_list:
-							newString += lp[i]
-			return newString
-
 	digit_w = 30
 	digit_h = 60
 
-	# test = cv2.imread('so32.png', 0)
-
-	# curr_num = np.array(test,dtype=np.float32)
-	# curr_num = curr_num.reshape(-1, digit_w * digit_h)
-
 	model_svm = cv2.ml.SVM_load('svm.xml')
-	# result = model_svm.predict(curr_num)[1]
-	# result = int(result[0, 0])
-	# print(result)
+
 	# Chuyen doi anh bien so
 	barcode = cv2.imread("barcode.png",1)
-	cv2.imshow("barcode", barcode)
-	cv2.waitKey()
+
 	barcode = cv2.convertScaleAbs(barcode, alpha=(1))
-	cv2.imshow("gray", barcode)
-	cv2.waitKey()
+
 	roi = barcode
 
 	# Chuyen anh bien so ve gray
 	gray = cv2.cvtColor(barcode, cv2.COLOR_BGR2GRAY)
-	cv2.imshow("gray", gray)
-	cv2.waitKey()
+
 	# Ap dung threshold de phan tach so va nen
 	binary = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY_INV)[1]
-	cv2.imshow("binary", binary)
-	cv2.waitKey()
+
 
 	# Segment kí tự
 	kernel3 = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
-	cv2.imshow("kernel3", kernel3)
-	cv2.waitKey()
+
 	# thre_mor = cv2.morphologyEx(binary, cv2.MORPH_DILATE, kernel3)
 	# cv2.imshow("Anh bien so sau threshold", thre_mor)
 	# cv2.waitKey()
@@ -96,13 +76,4 @@ def run():
 				x_pre = x
 				w_pre = w
 				plate_info +=result
-	#cv2.imshow("Cac contour tim duoc", roi)
-	#cv2.waitKey()
-
-	# Viet bien so len anh
-
-	# Hien thi anh
-	#print("Bien so=", plate_info)
-	#cv2.imshow("Hinh anh output",barcode)
-	#cv2.waitKey()
 	return plate_info

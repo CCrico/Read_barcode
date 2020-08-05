@@ -11,8 +11,7 @@ def detectBarcode(inputImage):
 			reverse = False
 			i = 0
 			boundingBoxes = [cv2.boundingRect(c) for c in cnts]
-			(cnts, boundingBoxes) = zip(*sorted(zip(cnts, boundingBoxes),
-																					key=lambda b: b[1][i], reverse=reverse))
+			(cnts, boundingBoxes) = zip(*sorted(zip(cnts, boundingBoxes), key=lambda b: b[1][i], reverse=reverse))
 			return cnts
 
 	ap = argparse.ArgumentParser()
@@ -21,14 +20,13 @@ def detectBarcode(inputImage):
 		help="Flag indicating whether or not to visualize each iteration")
 	args = vars(ap.parse_args())
 	template = cv2.imread("template.png")
-
 	template = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
 	template = cv2.Canny(template, 50, 200)
 	(tH, tW) = template.shape[:2]
 	#cv2.imshow("Template", template)
 	# load the image, convert it to grayscale, and initialize the
 	# bookkeeping variable to keep track of the matched region
-	image = cv2.imread("inputImage.png")
+	image = cv2.imread(inputImage)
 	if image.shape[1] > 3000:
 		scale_percent = 20 # percent of original size
 	elif image.shape[1] > 2000:
@@ -74,28 +72,19 @@ def detectBarcode(inputImage):
 	(endX, endY) = (int((maxLoc[0] + tW) * r), int((maxLoc[1] + tH) * r))
 	# draw a bounding box around the detected result and display the image
 	barcode = image[startY:endY,startX:endX]
-	cv2.rectangle(image, (startX, startY), (endX, endY), (0, 0, 255), 2)
-	cv2.imshow("outputImage", image)
-	cv2.waitKey(0)
-	cv2.imwrite("outputImage.png", barcode)
 
 	#cat chinh xac barcode
 	barcode = cv2.resize(barcode, dsize=(500, 300))
-	cv2.imshow("barcode", barcode)
-	cv2.waitKey()
+
 	barcode = cv2.convertScaleAbs(barcode, alpha=(1))
-	cv2.imshow("gray", barcode)
-	cv2.waitKey()
+
 	roi = barcode.copy()
 
 	# Chuyen anh bien so ve gray
 	gray = cv2.cvtColor(barcode, cv2.COLOR_BGR2GRAY)
-	cv2.imshow("gray", gray)
-	cv2.waitKey()
+
 	# Ap dung threshold de phan tach so va nen
 	binary = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY_INV)[1]
-	cv2.imshow("binary", binary)
-	cv2.waitKey()
 
 	cont, _  = cv2.findContours(binary, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 	count = 0
@@ -126,12 +115,8 @@ def detectBarcode(inputImage):
 	else:
 		h_bar = y_end + h_bar
 
-	cv2.rectangle(roi, (x_start, y_start), (x_start + w_bar,h_bar), (0, 255, 0), 2)
-	cv2.imshow("Cac contour tim duoc", roi)
-	cv2.waitKey()
 	barcode_new = barcode[y_start:h_bar, x_start:x_start+w_bar]
 	barcode_new = cv2.resize(barcode_new, dsize=(300,200))
-	#cv2.imshow("Image2", barcode_new)
 	cv2.waitKey()
 	cv2.imwrite("barcode.png", barcode_new)
 
